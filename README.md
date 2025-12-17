@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏡 Real Estate Dashboard Web App
 
-## Getting Started
+A modern **Real Estate Platform** built with **Next.js (App Router)**, **ShadCN UI**, and **Tailwind CSS**, providing property listings, agency exploration, search & filtering, interactive maps, and a clean dashboard experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+### 🔹 Core Features
+
+* **Dashboard** with quick navigation to Properties & Agencies
+* **Properties Listing Page** with image carousels
+* **Agencies Listing & Search** (filter by agency name)
+* **Agency Detail Page** with:
+
+  * Logo & branding
+  * Description & licenses
+  * Contact information
+  * Property statistics
+  * Categories & service areas
+* **Interactive Map (Leaflet – Free Tier)**
+  * Marker based on agency coordinates
+
+## ⭐ Saved Properties & Agencies
+  * **Save/Unsave Agencies and Properties**
+    * Toggle save button on agency detail page
+    * Visual feedback (Saved / Unsaved state)
+    * Prevent duplicate saves
+    * Optimized add/remove logic
+  * **User-Specific Saved Data**
+    * Each user has isolated saved items
+    * Linked via authenticated session
+
+* **Authentication UI**
+
+  * Login page
+  * Signup page (ShadCN Form)
+* **Responsive Design** (Mobile, Tablet, Desktop)
+* **Animated UI** (Framer Motion)
+* **Skeleton Loaders** for smooth UX
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **Next.js 14+ (App Router)**
+* **React**
+* **Tailwind CSS**
+* **ShadCN UI**
+* **Framer Motion** (animations)
+* **Lucide Icons**
+
+### Backend / APIs
+
+* **Next.js API Routes**
+* **Axios** for HTTP requests
+* **RapidAPI – UAE Real Estate API**
+
+### Maps
+
+* **Leaflet** (Free tier)
+
+---
+
+## 🧠 Complex Logic & Implementation Details
+
+### 1️⃣ API Integration (RapidAPI)
+
+* Secure server-side calls using **Next.js API routes**
+* Dynamic filters:
+
+  * Price range
+  * Rooms & baths
+  * Completion status
+  * Amenities
+* Error handling & fallback to static data
+
+### 2️⃣ Search & Filtering
+
+* Controlled inputs using `useState`
+* Debounced search by agency name
+* Conditional rendering based on API response
+
+### 3️⃣ UI/UX Enhancements
+
+* **ShadCN Cards + Carousel** for listings
+* **Skeleton loaders** during API fetch
+* Hover effects & transitions
+* Mobile-first responsive grid system
+
+### 4️⃣ Map Integration
+
+* Leaflet with:
+
+  * Custom marker
+  * Coordinates from API data
+* No paid Google Maps dependency
+
+### 5️⃣ Performance Optimization
+
+* Server Components where possible
+* Client Components only when needed (`"use client"`)
+* Lazy-loaded carousels & images
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env.local` file:
+
+```env
+MONGO_URI=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+RAPIDAPI_KEY=your_rapidapi_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Install dependencies
+npm install
 
-## Learn More
+# Run development server
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Visit:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎨 Design Philosophy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Minimal & modern
+* Card-based layouts
+* High readability
+* Smooth transitions
+* Real-estate friendly color palette
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📌 Future Improvements
+
+* Pagination & infinite scrolling
+* Advanced filters (location radius, map-based search)
+* Admin dashboard
+
+---
+
+## 🧑‍💻 Credits
+
+Built with Bayut API from **UAE Real Estate** listed on RapidAPI
+
+---
+
+## 📜 License
+
+This project is for educational & portfolio purposes.
