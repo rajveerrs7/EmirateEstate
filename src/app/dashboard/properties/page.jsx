@@ -46,8 +46,21 @@ export default function PropertiesPage() {
     }
   }
 
-  const Filters = () => (
-    <div className="flex flex-col gap-4">
+  return (
+    <div className="grid grid-cols-12 gap-4 p-4">
+      <div className="col-span-12 md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" className="w-full">
+              Filters
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[300px]">
+            <SheetHeader>
+              <SheetTitle>Filters</SheetTitle>
+            </SheetHeader>
+            <div className="mt-6">
+              <div className="flex flex-col gap-4">
       <div>
         <Label>Purpose</Label>
         <Select value={purpose} onValueChange={setPurpose}>
@@ -102,44 +115,95 @@ export default function PropertiesPage() {
 
       <div className="flex flex-col gap-2">
         <Label>Price (AED)</Label>
-        <Input type="number" placeholder="Min" onChange={(e) => setPriceMin(e.target.value)} />
-        <Input type="number" placeholder="Max" onChange={(e) => setPriceMax(e.target.value)} />
+        <Input type="number" placeholder="Min" value={price_min} onChange={(e) => setPriceMin(e.target.value)} />
+        <Input type="number" placeholder="Max" value={price_max} onChange={(e) => setPriceMax(e.target.value)} />
       </div>
 
       <div className="flex flex-col gap-2">
         <Label>Area (sqft)</Label>
-        <Input type="number" placeholder="Min" onChange={(e) => setAreaMin(e.target.value)} />
-        <Input type="number" placeholder="Max" onChange={(e) => setAreaMax(e.target.value)} />
+        <Input type="number" placeholder="Min" value={area_min} onChange={(e) => setAreaMin(e.target.value)} />
+        <Input type="number" placeholder="Max" value={area_max} onChange={(e) => setAreaMax(e.target.value)} />
       </div>
 
       <Button onClick={getData} className="w-full">
         Apply Filters
       </Button>
     </div>
-  );
-
-  return (
-    <div className="grid grid-cols-12 gap-4 p-4">
-      <div className="col-span-12 md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="w-full">
-              Filters
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[300px]">
-            <SheetHeader>
-              <SheetTitle>Filters</SheetTitle>
-            </SheetHeader>
-            <div className="mt-6">
-              <Filters />
             </div>
           </SheetContent>
         </Sheet>
       </div>
       <div className="hidden md:block md:col-span-3 p-4 border rounded-xl shadow-sm bg-white h-fit sticky top-4">
         <h2 className="text-xl font-semibold mb-4">Filters</h2>
-        <Filters />
+        <div className="flex flex-col gap-4">
+      <div>
+        <Label>Purpose</Label>
+        <Select value={purpose} onValueChange={setPurpose}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select Purpose" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="for-sale">For Sale</SelectItem>
+            <SelectItem value="for-rent">For Rent</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <Label>Category</Label>
+        <Select value={category} onValueChange={setCategory}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select Category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="residential">Residential</SelectItem>
+            <SelectItem value="apartments">Apartments</SelectItem>
+            <SelectItem value="penthouse">Penthouse</SelectItem>
+            <SelectItem value="commercial-plots">Commercial Plots</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <Label>Sort</Label>
+        <Select value={sort} onValueChange={setSort}>
+          <SelectTrigger>
+            <SelectValue placeholder="Sort By" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="popular">Popular</SelectItem>
+            <SelectItem value="latest">Latest</SelectItem>
+            <SelectItem value="lowest_price">Lowest Price</SelectItem>
+            <SelectItem value="highest_price">Highest Price</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <Checkbox
+          id="completed"
+          checked={completed}
+          onCheckedChange={(v) => setCompleted(v)}
+        />
+        <Label htmlFor="completed">Completed Construction</Label>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label>Price (AED)</Label>
+        <Input type="number" placeholder="Min" value={price_min} onChange={(e) => setPriceMin(e.target.value)} />
+        <Input type="number" placeholder="Max" value={price_max} onChange={(e) => setPriceMax(e.target.value)} />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label>Area (sqft)</Label>
+        <Input type="number" placeholder="Min" value={area_min} onChange={(e) => setAreaMin(e.target.value)} />
+        <Input type="number" placeholder="Max" value={area_max} onChange={(e) => setAreaMax(e.target.value)} />
+      </div>
+
+      <Button onClick={getData} className="w-full">
+        Apply Filters
+      </Button>
+    </div>
       </div>
       <div className="col-span-12 md:col-span-9">
         <Properties res={Response.data} />
